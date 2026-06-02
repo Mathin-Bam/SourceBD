@@ -18,6 +18,7 @@ import {
   Package,
   LayoutDashboard,
   Home,
+  Search,
 } from 'lucide-react';
 
 const navItems = [
@@ -29,11 +30,19 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isHome = pathname === '/';
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border">
+    <header 
+      className={cn(
+        "z-50 w-full transition-all duration-300", 
+        isHome 
+          ? "absolute top-0 left-0 right-0 bg-transparent border-none shadow-none" 
+          : "sticky top-0 bg-white/95 backdrop-blur-sm border-b border-border shadow-sm"
+      )}
+    >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -50,7 +59,7 @@ export function Header() {
                 <circle cx="20" cy="18" r="3" fill="#0f2417" />
               </svg>
             </div>
-            <span className="text-xl font-bold text-bengal-forest">
+            <span className={cn("text-xl font-bold transition-colors", isHome ? "text-white" : "text-bengal-forest")}>
               Source<span className="text-padma-green">BD</span>
             </span>
           </Link>
@@ -65,10 +74,10 @@ export function Header() {
                   <Button
                     variant="ghost"
                     className={cn(
-                      'gap-2 text-sm font-medium',
+                      'gap-2 text-sm font-medium transition-all duration-200',
                       isActive
-                        ? 'text-padma-green bg-mint-mist'
-                        : 'text-gray-600 hover:text-bengal-forest'
+                        ? (isHome ? 'text-white bg-white/20' : 'text-padma-green bg-mint-mist')
+                        : (isHome ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-bengal-forest')
                     )}
                   >
                     <Icon className="h-4 w-4" />
@@ -83,27 +92,62 @@ export function Header() {
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2">
               <Link href="/dashboard/buyer">
-                <Button variant="ghost" size="sm" className="text-sm">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className={cn("text-sm", isHome ? "text-white/80 hover:text-white hover:bg-white/10" : "")}
+                >
                   {t('nav.dashboard')}
                 </Button>
               </Link>
-              <LanguageToggle />
+              <LanguageToggle className={isHome ? "bg-white/10 hover:bg-white/20 text-white border border-white/10" : ""} />
             </div>
 
-            <Link href="/suppliers?become=supplier">
-              <Button
-                size="sm"
-                className="hidden md:flex bg-loom-gold text-bengal-forest hover:bg-loom-gold/90 font-medium"
-              >
-                {t('nav.becomeSupplier')}
-              </Button>
-            </Link>
+            {isHome ? (
+              <>
+                <button 
+                  className="text-white/80 hover:text-white p-2 transition-colors cursor-pointer hidden md:block"
+                  aria-label="Search"
+                  onClick={() => {
+                    const heroSearch = document.getElementById('hero-search');
+                    if (heroSearch) {
+                      heroSearch.focus();
+                      heroSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                  }}
+                >
+                  <Search className="h-5 w-5" />
+                </button>
+                <Link href="/suppliers?become=supplier">
+                  <Button
+                    size="sm"
+                    className="bg-padma-green hover:bg-padma-green/90 text-white font-medium px-5 rounded-md border-0"
+                  >
+                    {language === 'bn' ? 'সাইন আপ' : 'Sign Up'}
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Link href="/suppliers?become=supplier">
+                <Button
+                  size="sm"
+                  className="hidden md:flex bg-loom-gold text-bengal-forest hover:bg-loom-gold/90 font-medium"
+                >
+                  {t('nav.becomeSupplier')}
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger
                 render={
-                  <Button variant="ghost" size="icon" aria-label="Open menu" className="md:hidden" />
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    aria-label="Open menu" 
+                    className={cn("md:hidden", isHome ? "text-white hover:bg-white/10" : "")} 
+                  />
                 }
               >
                 <Menu className="h-5 w-5" />

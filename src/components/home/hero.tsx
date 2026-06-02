@@ -1,73 +1,102 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/stores/language-store';
 import { Button } from '@/components/ui/button';
-import { BadgeTier } from '@/components/shared/badge-tier';
-import { SUPPLIERS } from '@/data/mock-suppliers';
 import { VideoBackground } from './video-background';
 import {
   ArrowRight,
   Building2,
   CheckCircle,
   MapPin,
+  Search,
+  Heart,
+  Leaf,
+  Award,
+  Star,
 } from 'lucide-react';
 
 export function Hero() {
   const { language, t } = useLanguage();
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const featuredSupplier = SUPPLIERS.find(s => s.tier === 'Platinum' && s.featured);
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/suppliers?search=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      router.push('/suppliers');
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden min-h-[600px] md:min-h-[700px]">
+    <section className="relative overflow-hidden min-h-[750px] md:min-h-[850px] flex items-center pt-28 md:pt-36 pb-16 md:pb-24 lg:pb-32">
       {/* Video Background */}
       <VideoBackground />
 
-      <div className="relative z-10 container mx-auto px-4 py-16 md:py-24 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="lg:col-span-7 space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
+              className="space-y-6"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6 border border-white/20">
-                <CheckCircle className="h-4 w-4" />
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md text-white rounded-full text-sm font-semibold border border-white/20 shadow-md">
+                <CheckCircle className="h-4 w-4 text-loom-gold fill-loom-gold/10" />
                 {language === 'en' ? 'Bangladesh\'s Premier B2B Sourcing Platform' : 'বাংলাদেশের প্রিমিয়ার B2B উৎস প্ল্যাটফর্ম'}
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
-                {t('home.hero.title')}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.12] tracking-tight drop-shadow-md">
+                Source Directly from <br className="hidden md:inline" />
+                Bangladesh's Top <br className="hidden md:inline" />
+                Manufacturers
               </h1>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg text-gray-200 max-w-xl"
-            >
-              {t('home.hero.subtitle')}
-            </motion.p>
-
+            {/* Glassmorphic Search Bar */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <form onSubmit={handleSearch} className="w-full max-w-2xl">
+                <div className="relative flex items-center bg-white/10 backdrop-blur-md border border-white/25 rounded-2xl px-5 py-4 shadow-2xl focus-within:ring-2 focus-within:ring-padma-green/60 transition-all duration-300">
+                  <Search className="h-6 w-6 text-white/80 flex-shrink-0" />
+                  <input
+                    id="hero-search"
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder={language === 'bn' ? 'সরবরাহকারী বা কাঁচামাল অনুসন্ধান করুন...' : 'Search a supplier for input/manufacturers'}
+                    className="w-full bg-transparent text-white placeholder-white/60 focus:outline-none ml-4 text-base md:text-lg py-0.5 border-0 focus:ring-0"
+                  />
+                </div>
+              </form>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="flex flex-wrap gap-4 pt-1"
             >
               <Link href="/suppliers">
-                <Button size="lg" className="bg-loom-gold hover:bg-loom-gold/90 text-bengal-forest font-semibold shadow-lg">
+                <Button size="lg" className="bg-padma-green hover:bg-padma-green/90 text-white font-bold shadow-lg px-8 py-6.5 text-base rounded-xl transition-all duration-200">
                   {t('home.hero.browseSuppliers')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/dashboard/buyer">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-bengal-forest font-semibold"
+                  className="border-2 border-white/40 bg-white/5 hover:bg-white/15 text-white font-bold px-8 py-6.5 text-base rounded-xl transition-all duration-200"
                 >
                   {t('home.hero.postRFQ')}
                 </Button>
@@ -75,71 +104,121 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Content - Featured Supplier Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 bg-gradient-to-r from-padma-green/20 to-loom-gold/20 rounded-2xl blur-xl" />
-            <div className="relative bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50 p-6 space-y-4">
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-lg bg-mint-mist flex items-center justify-center">
-                    <Building2 className="h-7 w-7 text-padma-green" />
+          {/* Right Content - 3D Stacked Card */}
+          <div className="lg:col-span-5 relative mt-8 lg:mt-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="relative w-full max-w-[420px] mx-auto lg:ml-auto"
+            >
+              {/* Stacked Cards behind the main card */}
+              <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 shadow-lg translate-x-5 translate-y-5 rotate-[3.5deg] z-0 pointer-events-none" />
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl border border-white/15 shadow-xl translate-x-2.5 translate-y-2.5 -rotate-[1.5deg] z-0 pointer-events-none" />
+
+              {/* Main Card */}
+              <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-6 md:p-7 border border-white/50 space-y-6">
+                {/* Header Profile Section */}
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-14 h-14 rounded-full bg-padma-green/10 flex items-center justify-center border border-padma-green/20">
+                      <div className="w-11 h-11 rounded-full bg-padma-green/20 flex items-center justify-center font-black text-padma-green text-lg">
+                        A
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center">
+                        <span className="text-[10px] font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100 flex items-center gap-1">
+                          <CheckCircle className="h-3 w-3 fill-sky-600 text-white" />
+                          Verified Supplier
+                        </span>
+                      </div>
+                      <h3 className="font-extrabold text-xl text-bengal-forest mt-1.5 leading-tight">Apex Textiles Ltd.</h3>
+                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                        <MapPin className="h-3.5 w-3.5 text-gray-400" />
+                        <span>Gazipur, Dhaka</span>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-bengal-forest">{featuredSupplier?.name}</h3>
-                    <p className="text-sm text-gray-500">{language === 'bn' ? featuredSupplier?.nameBn : featuredSupplier?.location.city}</p>
+                  <button className="text-gray-300 hover:text-rose-500 transition-colors p-1.5 cursor-pointer">
+                    <Heart className="h-6 w-6" />
+                  </button>
+                </div>
+
+                {/* Sub-Header Verification Tags */}
+                <div className="flex flex-wrap gap-2.5">
+                  <span className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100">
+                    <Leaf className="h-3.5 w-3.5" />
+                    Organic cotton / Verified
+                  </span>
+                  <span className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 text-purple-700 text-xs font-bold rounded-lg border border-purple-100">
+                    <Award className="h-3.5 w-3.5" />
+                    98% Preferred / Top Rated
+                  </span>
+                </div>
+
+                {/* Certifications (Visual Mockup Seals) */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Certificaties</h4>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {/* OEKO-TEX Mockup */}
+                    <div className="border border-gray-200 rounded-lg p-2 bg-gray-50 flex flex-col justify-center items-center leading-none text-center shadow-xs">
+                      <span className="text-[9px] font-black text-gray-800 tracking-tighter">OEKO-TEX®</span>
+                      <span className="text-[6px] text-gray-400 mt-0.5">STANDARD 100</span>
+                    </div>
+
+                    {/* GOTS Circle Seal Mockup */}
+                    <div className="w-9 h-9 rounded-full bg-emerald-800 text-white flex items-center justify-center font-extrabold text-[8px] border border-emerald-900 shadow-sm leading-none" title="GOTS Certified">
+                      GOTS
+                    </div>
+
+                    {/* ISO Rect */}
+                    <div className="border border-gray-200 rounded-lg px-2.5 py-1.5 bg-gray-50 text-[10px] font-black text-gray-700 shadow-xs">
+                      ISO 9001
+                    </div>
+
+                    {/* BSCI Seal */}
+                    <div className="border border-gray-200 rounded-lg px-2.5 py-1.5 bg-gray-50 text-[10px] font-black text-red-800 shadow-xs flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                      BSCI
+                    </div>
                   </div>
                 </div>
-                <BadgeTier tier={featuredSupplier?.tier || 'Verified'} animated />
-              </div>
 
-              <p className="text-sm text-gray-600 line-clamp-3">
-                {language === 'en' ? featuredSupplier?.description.en : featuredSupplier?.description.bn}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {featuredSupplier?.certifications.slice(0, 3).map((cert) => (
-                  <span
-                    key={cert}
-                    className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
-                  >
-                    {cert}
+                {/* Bottom Performance Tags */}
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <span className="flex items-center gap-1.5 px-3 py-2 bg-amber-500 text-white text-xs font-bold rounded-xl shadow-sm">
+                    <Star className="h-3.5 w-3.5 fill-white text-amber-500" />
+                    30+ Years Experience
                   </span>
-                ))}
-                {(featuredSupplier?.certifications.length || 0) > 3 && (
-                  <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
-                    +{(featuredSupplier?.certifications.length || 0) - 3}
+                  <span className="flex items-center gap-1.5 px-3 py-2 bg-teal-600 text-white text-xs font-bold rounded-xl shadow-sm">
+                    <Building2 className="h-3.5 w-3.5 text-white" />
+                    100% Export Oriented
                   </span>
-                )}
-              </div>
+                </div>
 
-              <div className="flex items-center gap-4 pt-2 border-t">
-                <div className="flex items-center gap-1 text-sm">
-                  <MapPin className="h-4 w-4 text-padma-green" />
-                  <span>{featuredSupplier?.location.city}</span>
-                </div>
-                <div className="text-sm">
-                  <span className="text-padma-green font-semibold">{featuredSupplier?.rating}</span>
-                  <span className="text-gray-400">/5</span>
-                </div>
-                <div className="text-sm">
-                  <span className="text-padma-green font-semibold">{featuredSupplier?.responseRate}%</span>
-                  <span className="text-gray-400"> response</span>
-                </div>
+                {/* View Profile Direct CTA */}
+                <Link href="/suppliers/sup-001" className="block pt-2">
+                  <Button className="w-full bg-bengal-forest hover:bg-bengal-forest/90 text-white font-bold py-5.5 rounded-xl transition-all duration-200 shadow-lg">
+                    {t('common.viewProfile')}
+                  </Button>
+                </Link>
               </div>
-
-              <Link href={`/suppliers/${featuredSupplier?.id}`}>
-                <Button className="w-full bg-bengal-forest hover:bg-bengal-forest/90 font-medium">
-                  {t('common.viewProfile')}
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
+      </div>
+
+      {/* Floating Green Chat Widget */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button 
+          className="w-14 h-14 bg-padma-green hover:bg-padma-green/95 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95 cursor-pointer border-2 border-white/20 animate-bounce-subtle"
+          aria-label="Contact support"
+        >
+          <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white text-padma-green">
+            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+          </svg>
+        </button>
       </div>
     </section>
   );
