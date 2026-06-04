@@ -26,7 +26,7 @@ export function CategoriesGrid() {
           <span className="font-mono text-[11px] uppercase tracking-widest text-padma-green mb-4 block">
             Industries
           </span>
-          <h2 className="font-display text-4xl md:text-5xl tracking-tight text-bengal-forest mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-bengal-forest mb-4">
             {t('home.categories.title')}
           </h2>
           <p className="text-lg text-gray-500 max-w-2xl">
@@ -60,9 +60,9 @@ export function CategoriesGrid() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:via-black/40 transition-colors duration-500" />
                     
                     <div className="absolute bottom-0 left-0 right-0 p-5 transform transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
-                      <h3 className={`font-display font-semibold text-white ${
+                      <h3 className={`font-bold text-white ${
                         isLarge ? 'text-2xl md:text-3xl' : 'text-base md:text-lg'
-                      } tracking-tight`}>
+                      }`}>
                         {categoryName}
                       </h3>
                       

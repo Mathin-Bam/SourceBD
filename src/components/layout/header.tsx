@@ -45,7 +45,7 @@ export function Header() {
               alt="SourceBD Emblem" 
               className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-gray-100 shadow-sm"
             />
-            <span className="text-xl md:text-2xl font-bold font-display text-bengal-forest tracking-tight">
+            <span className="text-xl md:text-2xl font-bold text-bengal-forest">
               Source<span className="text-padma-green">BD</span>
             </span>
           </Link>
@@ -142,7 +142,7 @@ export function Header() {
                 <div className="flex flex-col gap-6 mt-6">
                   <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
                     <img src="/icon.png" alt="SourceBD Emblem" className="h-10 w-10 rounded-full object-cover border border-gray-100 shadow-sm" />
-                    <span className="text-2xl font-bold font-display text-bengal-forest tracking-tight">
+                    <span className="text-2xl font-bold text-bengal-forest">
                       Source<span className="text-padma-green">BD</span>
                     </span>
                   </Link>

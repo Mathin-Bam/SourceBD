@@ -21,7 +21,7 @@ export function CtaSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="font-display text-4xl md:text-5xl tracking-tight font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {t('home.cta.title')}
           </h2>
         </motion.div>
@@ -39,7 +39,7 @@ export function CtaSection() {
               <div className="w-14 h-14 rounded-full bg-padma-green/10 flex items-center justify-center mb-4">
                 <ShoppingCart className="h-7 w-7 text-padma-green" />
               </div>
-              <h3 className="text-2xl font-display tracking-tight font-bold text-bengal-forest mb-3">
+              <h3 className="text-2xl font-bold text-bengal-forest mb-3">
                 {t('home.cta.buyerTitle')}
               </h3>
               <p className="text-gray-600 mb-6">
@@ -66,7 +66,7 @@ export function CtaSection() {
               <div className="w-14 h-14 rounded-full bg-loom-gold/20 flex items-center justify-center mb-4">
                 <Store className="h-7 w-7 text-loom-gold" />
               </div>
-              <h3 className="text-2xl font-display tracking-tight font-bold text-bengal-forest mb-3">
+              <h3 className="text-2xl font-bold text-bengal-forest mb-3">
                 {t('home.cta.supplierTitle')}
               </h3>
               <p className="text-gray-600 mb-6">

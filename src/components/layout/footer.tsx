@@ -27,7 +27,7 @@ export function Footer() {
                 alt="SourceBD Emblem" 
                 className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-white/10 shadow-sm"
               />
-              <span className="text-xl md:text-2xl font-bold font-display text-white tracking-tight">
+              <span className="text-xl md:text-2xl font-bold text-white">
                 Source<span className="text-loom-gold">BD</span>
               </span>
             </Link>
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display font-semibold text-lg mb-4">{t('footer.quickLinks')}</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-loom-gold transition-colors text-sm">
@@ -76,7 +76,7 @@ export function Footer() {
 
           {/* Categories */}
           <div>
-            <h3 className="font-display font-semibold text-lg mb-4">{t('footer.categories')}</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('footer.categories')}</h3>
             <ul className="space-y-2">
               {CATEGORIES.slice(0, 5).map((category) => (
                 <li key={category.id}>
@@ -93,7 +93,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display font-semibold text-lg mb-4">{t('footer.contact')}</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <MapPin className="h-4 w-4 text-loom-gold" />

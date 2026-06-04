@@ -54,7 +54,7 @@ export function Hero() {
                 <CheckCircle className="h-4 w-4" />
                 {language === 'en' ? 'Bangladesh\'s Premier B2B Sourcing Platform' : 'বাংলাদেশের প্রিমিয়ার B2B উৎস প্ল্যাটফর্ম'}
               </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-white leading-tight drop-shadow-lg">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
                 {t('home.hero.title')}
               </h1>
             </motion.div>

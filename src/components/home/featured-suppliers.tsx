@@ -34,7 +34,7 @@ export function FeaturedSuppliers() {
             <span className="font-mono text-[11px] uppercase tracking-widest text-padma-green mb-4 block">
               Verified Partners
             </span>
-            <h2 className="font-display text-4xl md:text-5xl tracking-tight text-bengal-forest mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-bengal-forest mb-2">
               {t('home.featuredSuppliers.title')}
             </h2>
             <p className="text-lg text-gray-500">
@@ -66,7 +66,7 @@ export function FeaturedSuppliers() {
                   </div>
 
                   {/* Name */}
-                  <h3 className="font-display tracking-tight text-xl text-bengal-forest group-hover:text-sundarban-green transition-colors duration-500 mb-1">
+                  <h3 className="text-xl font-bold text-bengal-forest group-hover:text-sundarban-green transition-colors duration-500 mb-1">
                     {language === 'bn' && supplier.nameBn ? supplier.nameBn : supplier.name}
                   </h3>
 
