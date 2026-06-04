@@ -13,7 +13,7 @@ export function CtaSection() {
   const { t } = useLanguage();
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-padma-green">
+    <section ref={ref} className="py-20 md:py-32 bg-sundarban-green">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -21,7 +21,7 @@ export function CtaSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl tracking-tight font-bold text-white mb-4">
             {t('home.cta.title')}
           </h2>
         </motion.div>
@@ -32,21 +32,21 @@ export function CtaSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white rounded-2xl p-8 relative overflow-hidden"
+            className="bg-white rounded-sm p-10 relative overflow-hidden shadow-[0_1px_3px_rgba(10,54,34,0.04)]"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-loom-gold/10 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
               <div className="w-14 h-14 rounded-full bg-padma-green/10 flex items-center justify-center mb-4">
                 <ShoppingCart className="h-7 w-7 text-padma-green" />
               </div>
-              <h3 className="text-2xl font-bold text-bengal-forest mb-3">
+              <h3 className="text-2xl font-display tracking-tight font-bold text-bengal-forest mb-3">
                 {t('home.cta.buyerTitle')}
               </h3>
               <p className="text-gray-600 mb-6">
                 {t('home.cta.buyerDesc')}
               </p>
               <Link href="/suppliers">
-                <Button className="bg-padma-green hover:bg-padma-green/90 text-white font-semibold">
+                <Button className="bg-sundarban-green hover:bg-sundarban-green/90 text-white font-semibold">
                   {t('home.cta.startSourcing')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -59,21 +59,21 @@ export function CtaSection() {
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-2xl p-8 relative overflow-hidden"
+            className="bg-white rounded-sm p-10 relative overflow-hidden shadow-[0_1px_3px_rgba(10,54,34,0.04)]"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-loom-gold/10 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
               <div className="w-14 h-14 rounded-full bg-loom-gold/20 flex items-center justify-center mb-4">
                 <Store className="h-7 w-7 text-loom-gold" />
               </div>
-              <h3 className="text-2xl font-bold text-bengal-forest mb-3">
+              <h3 className="text-2xl font-display tracking-tight font-bold text-bengal-forest mb-3">
                 {t('home.cta.supplierTitle')}
               </h3>
               <p className="text-gray-600 mb-6">
                 {t('home.cta.supplierDesc')}
               </p>
               <Link href="/suppliers?become=supplier">
-                <Button className="bg-loom-gold hover:bg-loom-gold/90 text-bengal-forest font-semibold">
+                <Button className="bg-jute-gold hover:bg-jute-gold/90 text-bengal-forest border border-jute-gold font-semibold">
                   {t('home.cta.joinAsSupplier')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

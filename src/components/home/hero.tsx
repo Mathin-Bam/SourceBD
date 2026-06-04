@@ -12,6 +12,8 @@ import {
   Building2,
   CheckCircle,
   MapPin,
+  Search,
+  ChevronDown,
 } from 'lucide-react';
 
 export function Hero() {
@@ -37,7 +39,7 @@ export function Hero() {
                 <CheckCircle className="h-4 w-4" />
                 {language === 'en' ? 'Bangladesh\'s Premier B2B Sourcing Platform' : 'বাংলাদেশের প্রিমিয়ার B2B উৎস প্ল্যাটফর্ম'}
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-white leading-tight drop-shadow-lg">
                 {t('home.hero.title')}
               </h1>
             </motion.div>
@@ -55,23 +57,41 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-4"
+              className="space-y-6"
             >
-              <Link href="/suppliers">
-                <Button size="lg" className="bg-loom-gold hover:bg-loom-gold/90 text-bengal-forest font-semibold shadow-lg">
-                  {t('home.hero.browseSuppliers')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+              {/* Massive Search Bar */}
+              <div className="flex w-full max-w-2xl bg-white/10 backdrop-blur-md rounded-lg border border-white/30 p-1.5 shadow-2xl focus-within:border-white/60 focus-within:bg-white/20 transition-all duration-300">
+                <div className="relative flex-shrink-0">
+                  <select className="appearance-none bg-transparent text-white font-medium pl-4 pr-10 py-3 outline-none border-r border-white/20 h-full cursor-pointer hover:bg-white/5 rounded-l-md transition-colors [&>option]:text-bengal-forest">
+                    <option value="products">Products</option>
+                    <option value="suppliers">Suppliers</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70 pointer-events-none" />
+                </div>
+                <input 
+                  type="text"
+                  placeholder="What are you looking for..."
+                  className="flex-1 bg-transparent text-white placeholder:text-white/60 px-4 py-3 outline-none min-w-0"
+                />
+                <Button size="lg" className="bg-loom-gold hover:bg-loom-gold/90 text-bengal-forest font-bold px-6 md:px-8 h-auto rounded-md shadow-lg shrink-0 flex items-center gap-2">
+                  <Search className="h-5 w-5 hidden md:block" />
+                  Search
                 </Button>
-              </Link>
-              <Link href="/dashboard/buyer">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-bengal-forest font-semibold"
-                >
-                  {t('home.hero.postRFQ')}
-                </Button>
-              </Link>
+              </div>
+
+              {/* Secondary CTAs */}
+              <div className="flex flex-wrap gap-4 pt-2">
+                <Link href="/suppliers">
+                  <Button variant="outline" className="border border-white/30 bg-white/5 hover:bg-white/20 text-white font-medium backdrop-blur-sm transition-colors">
+                    {t('home.hero.browseSuppliers')}
+                  </Button>
+                </Link>
+                <Link href="/dashboard/buyer">
+                  <Button variant="outline" className="border border-white/30 bg-white/5 hover:bg-white/20 text-white font-medium backdrop-blur-sm transition-colors">
+                    {t('home.hero.postRFQ')}
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
           </div>
 
@@ -90,7 +110,7 @@ export function Hero() {
                     <Building2 className="h-7 w-7 text-padma-green" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-bengal-forest">{featuredSupplier?.name}</h3>
+                    <h3 className="font-bold font-display text-bengal-forest">{featuredSupplier?.name}</h3>
                     <p className="text-sm text-gray-500">{language === 'bn' ? featuredSupplier?.nameBn : featuredSupplier?.location.city}</p>
                   </div>
                 </div>
@@ -105,7 +125,7 @@ export function Hero() {
                 {featuredSupplier?.certifications.slice(0, 3).map((cert) => (
                   <span
                     key={cert}
-                    className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                    className="px-2 py-1 bg-gray-100 text-gray-600 font-mono text-[11px] uppercase tracking-widest rounded-full"
                   >
                     {cert}
                   </span>
@@ -123,11 +143,11 @@ export function Hero() {
                   <span>{featuredSupplier?.location.city}</span>
                 </div>
                 <div className="text-sm">
-                  <span className="text-padma-green font-semibold">{featuredSupplier?.rating}</span>
+                  <span className="text-padma-green font-semibold font-mono">{featuredSupplier?.rating}</span>
                   <span className="text-gray-400">/5</span>
                 </div>
                 <div className="text-sm">
-                  <span className="text-padma-green font-semibold">{featuredSupplier?.responseRate}%</span>
+                  <span className="text-padma-green font-semibold font-mono">{featuredSupplier?.responseRate}%</span>
                   <span className="text-gray-400"> response</span>
                 </div>
               </div>

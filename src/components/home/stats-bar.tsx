@@ -18,7 +18,7 @@ export function StatsBar() {
   const { t } = useLanguage();
 
   return (
-    <section ref={ref} className="bg-white border-y border-gray-200 py-8">
+    <section ref={ref} className="bg-[#FDFDFB] border-y border-gray-100/60 py-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -32,7 +32,7 @@ export function StatsBar() {
               }}
               className="text-center"
             >
-              <div className="text-3xl md:text-4xl font-bold text-padma-green mb-1">
+              <div className="text-3xl md:text-4xl font-bold font-mono text-sundarban-green mb-1">
                 {isInView && (
                   <AnimatedCounter
                     value={stat.value}
@@ -41,7 +41,7 @@ export function StatsBar() {
                   />
                 )}
               </div>
-              <p className="text-sm text-gray-600 font-medium">{t(`home.stats.${stat.key}`)}</p>
+              <p className="font-mono text-[11px] uppercase tracking-widest text-gray-500">{t(`home.stats.${stat.key}`)}</p>
             </motion.div>
           ))}
         </div>

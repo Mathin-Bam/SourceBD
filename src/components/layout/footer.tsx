@@ -15,7 +15,7 @@ export function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-bengal-forest text-white">
+    <footer className="bg-[#0A3622] text-white">
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -34,7 +34,7 @@ export function Footer() {
                   <circle cx="20" cy="18" r="3" fill="white" />
                 </svg>
               </div>
-              <span className="text-xl font-bold">
+              <span className="text-xl font-bold font-display">
                 Source<span className="text-loom-gold">BD</span>
               </span>
             </Link>
@@ -56,7 +56,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">{t('footer.quickLinks')}</h3>
+            <h3 className="font-display font-semibold text-lg mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-loom-gold transition-colors text-sm">
@@ -83,7 +83,7 @@ export function Footer() {
 
           {/* Categories */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">{t('footer.categories')}</h3>
+            <h3 className="font-display font-semibold text-lg mb-4">{t('footer.categories')}</h3>
             <ul className="space-y-2">
               {CATEGORIES.slice(0, 5).map((category) => (
                 <li key={category.id}>
@@ -100,7 +100,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">{t('footer.contact')}</h3>
+            <h3 className="font-display font-semibold text-lg mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <MapPin className="h-4 w-4 text-loom-gold" />
@@ -108,18 +108,18 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <Phone className="h-4 w-4 text-loom-gold" />
-                <span>+880 1700-000000</span>
+                <span className="font-mono">+880 1700-000000</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <Mail className="h-4 w-4 text-loom-gold" />
-                <span>hello@sourcebd.com</span>
+                <span className="font-mono">hello@sourcebd.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400">
             {t('footer.copyright')}
           </p>

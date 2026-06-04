@@ -18,6 +18,7 @@ import {
   Package,
   LayoutDashboard,
   Home,
+  Search,
 } from 'lucide-react';
 
 const navItems = [
@@ -31,9 +32,10 @@ export function Header() {
   const pathname = usePathname();
   const { t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchExpanded, setSearchExpanded] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border">
+    <header className="sticky top-0 z-50 w-full glass-nav">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -50,7 +52,7 @@ export function Header() {
                 <circle cx="20" cy="18" r="3" fill="#0f2417" />
               </svg>
             </div>
-            <span className="text-xl font-bold text-bengal-forest">
+            <span className="text-xl font-bold font-display text-bengal-forest">
               Source<span className="text-padma-green">BD</span>
             </span>
           </Link>
@@ -65,7 +67,7 @@ export function Header() {
                   <Button
                     variant="ghost"
                     className={cn(
-                      'gap-2 text-sm font-medium',
+                      'gap-2 text-sm font-medium transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
                       isActive
                         ? 'text-padma-green bg-mint-mist'
                         : 'text-gray-600 hover:text-bengal-forest'
@@ -80,7 +82,42 @@ export function Header() {
           </nav>
 
           {/* Right Side */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Expandable Search */}
+            <div className="hidden md:flex items-center">
+              <AnimatePresence initial={false}>
+                {searchExpanded ? (
+                  <motion.div
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 220, opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="overflow-hidden flex items-center mr-2"
+                  >
+                    <div className="flex items-center w-full bg-mint-mist border border-padma-green/20 rounded-full px-3 py-1.5 shadow-inner">
+                      <Search className="h-4 w-4 text-padma-green shrink-0" />
+                      <input 
+                        type="text" 
+                        autoFocus
+                        placeholder="Search products or suppliers..." 
+                        className="bg-transparent border-none outline-none text-sm px-2 w-full text-bengal-forest placeholder:text-padma-green/60"
+                        onBlur={() => setSearchExpanded(false)}
+                      />
+                    </div>
+                  </motion.div>
+                ) : (
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="text-gray-500 hover:text-padma-green transition-colors mr-1"
+                    onClick={() => setSearchExpanded(true)}
+                  >
+                    <Search className="h-5 w-5" />
+                  </Button>
+                )}
+              </AnimatePresence>
+            </div>
+
             <div className="hidden md:flex items-center gap-2">
               <Link href="/dashboard/buyer">
                 <Button variant="ghost" size="sm" className="text-sm">

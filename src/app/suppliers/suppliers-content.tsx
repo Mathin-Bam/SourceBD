@@ -56,19 +56,19 @@ export function SuppliersContent() {
   };
 
   return (
-    <div className="min-h-screen bg-jute-cream">
+    <div className="min-h-screen bg-[#FDFDFB]">
       {/* Header */}
-      <div className="bg-bengal-forest text-white py-12">
+      <div className="bg-sundarban-green text-white py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">
+            <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-2">
               {t('suppliers.title')}
             </h1>
-            <p className="text-lg text-gray-300">
+            <p className="text-lg text-gray-300/80">
               {t('suppliers.subtitle')}
             </p>
           </motion.div>
@@ -78,7 +78,7 @@ export function SuppliersContent() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         {/* Search and Filter Bar */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4 mb-8">
+        <div className="bg-white/70 backdrop-blur-md rounded-sm border border-white/30 p-5 mb-8 shadow-[0_1px_3px_rgba(10,54,34,0.04)]">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="relative flex-1">
@@ -165,7 +165,7 @@ export function SuppliersContent() {
 
         {/* Results Count */}
         <div className="mb-4">
-          <p className="text-sm text-gray-600">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-gray-400">
             Showing {filteredSuppliers.length} supplier{filteredSuppliers.length !== 1 ? 's' : ''}
           </p>
         </div>

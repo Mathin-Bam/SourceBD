@@ -29,9 +29,9 @@ const tierStyles = {
     border: 'border-padma-green/20',
   },
   Gold: {
-    bg: 'bg-loom-gold',
+    bg: 'bg-jute-gold',
     text: 'text-bengal-forest',
-    border: 'border-loom-gold/30',
+    border: 'border-jute-gold/30',
   },
   Platinum: {
     bg: 'bg-bengal-forest',
@@ -74,18 +74,18 @@ export function BadgeTier({
           )}
         />
       )}
-      <span className="font-medium">{tier}</span>
+      <span className="font-mono text-[10px] uppercase tracking-widest">{tier}</span>
     </>
   );
 
   const badgeClassName = cn(
-    'inline-flex items-center rounded-full border font-sans',
+    'inline-flex items-center rounded-sm border font-sans',
     styles.bg,
     styles.text,
     styles.border,
     tierSizes[size],
     animated && tier === 'Platinum' && 'animate-pulse-glow',
-    animated && tier === 'Gold' && 'shadow-lg shadow-loom-gold/20',
+    animated && tier === 'Gold' && 'shadow-lg shadow-jute-gold/20',
     className
   );
 
