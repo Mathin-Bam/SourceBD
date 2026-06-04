@@ -15,10 +15,10 @@ export function SupplierLedgerRow({ supplier }: SupplierLedgerRowProps) {
   const city = supplier.location?.city || 'Unknown';
   const division = supplier.location?.division || 'Region';
   const employees = supplier.employees || 'N/A';
-  const revenue = supplier.revenue || 'N/A';
+  const revenue = (supplier as any).revenue || 'N/A';
   const rating = supplier.rating || 'N/A';
-  const responseRate = supplier.responseRate || 'N/A';
-  const leadTime = supplier.leadTime || 'N/A';
+  const responseRate = (supplier as any).responseRate || 'N/A';
+  const leadTime = (supplier as any).avgLeadTime || 'N/A';
   const certifications = supplier.certifications || [];
   
   const bannerImage = (supplier as any).banner || 'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=200&q=80';

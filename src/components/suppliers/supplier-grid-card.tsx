@@ -1,16 +1,7 @@
 import React from "react";
 import { MapPin, Users, Star, Award, ArrowRight } from "lucide-react";
 
-export interface Supplier {
-  id: string;
-  name: string;
-  banner?: string;
-  tier: string;
-  location: string;
-  employees: string;
-  rating: number;
-  certifications: string[];
-}
+import type { Supplier } from '@/lib/types';
 
 interface SupplierGridCardProps {
   supplier: Supplier;
@@ -19,7 +10,7 @@ interface SupplierGridCardProps {
 export function SupplierGridCard({ supplier }: SupplierGridCardProps) {
   // Fallback to a sleek placeholder image if missing
   const bannerUrl =
-    supplier.banner ||
+    (supplier as any).banner ||
     "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80";
 
   return (
@@ -50,7 +41,7 @@ export function SupplierGridCard({ supplier }: SupplierGridCardProps) {
           {/* Operational Data */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-white/90 text-sm mb-4">
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5" /> {supplier.location}
+              <MapPin className="w-3.5 h-3.5" /> {supplier.location?.city}, {supplier.location?.division}
             </span>
             <span className="flex items-center gap-1.5">
               <Users className="w-3.5 h-3.5" /> {supplier.employees}
