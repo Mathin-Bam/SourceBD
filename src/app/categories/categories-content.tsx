@@ -14,7 +14,7 @@ export function CategoriesContent() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFB] pt-24 pb-20 md:py-32">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export function CategoriesContent() {
           </p>
         </motion.div>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" ref={ref}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {CATEGORIES.map((category) => {
             const categoryName = category.name[language];
 
