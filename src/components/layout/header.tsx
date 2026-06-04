@@ -39,20 +39,13 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-10 w-10">
-              <svg viewBox="0 0 40 40" className="h-full w-full">
-                <circle cx="20" cy="20" r="18" fill="#0f2417" />
-                <path
-                  d="M12 28 L20 12 L28 28 L20 22 Z"
-                  fill="#f5c842"
-                  stroke="#1a7a4a"
-                  strokeWidth="1"
-                />
-                <circle cx="20" cy="18" r="3" fill="#0f2417" />
-              </svg>
-            </div>
-            <span className="text-xl font-bold font-display text-bengal-forest">
+          <Link href="/" className="flex items-center gap-2.5">
+            <img 
+              src="/icon.png" 
+              alt="SourceBD Emblem" 
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-gray-100 shadow-sm"
+            />
+            <span className="text-xl md:text-2xl font-bold font-display text-bengal-forest tracking-tight">
               Source<span className="text-padma-green">BD</span>
             </span>
           </Link>
@@ -147,10 +140,11 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-80 bg-white">
                 <div className="flex flex-col gap-6 mt-6">
-                  <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                    <h2 className="text-2xl font-bold text-bengal-forest">
+                  <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
+                    <img src="/icon.png" alt="SourceBD Emblem" className="h-10 w-10 rounded-full object-cover border border-gray-100 shadow-sm" />
+                    <span className="text-2xl font-bold font-display text-bengal-forest tracking-tight">
                       Source<span className="text-padma-green">BD</span>
-                    </h2>
+                    </span>
                   </Link>
 
                   <nav className="flex flex-col gap-2">

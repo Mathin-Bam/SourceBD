@@ -90,6 +90,11 @@ export interface Category {
   icon: string;
   count: number;
   featured?: boolean;
+  subcategories?: {
+    name: LocalizedString;
+    icon: string;
+    image: string;
+  }[];
 }
 
 export interface Quote {

@@ -100,8 +100,9 @@ export function TopSourced() {
                             className="group/link flex items-center py-0.5"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-padma-green/0 group-hover/link:bg-padma-green/100 mr-0 group-hover/link:mr-2 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                            <span className="text-sm text-gray-500 group-hover/link:text-sundarban-green group-hover/link:translate-x-1 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                            <span className="relative inline-block text-sm text-gray-500 group-hover/link:text-sundarban-green group-hover/link:translate-x-1 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                               {product}
+                              <span className="absolute left-0 -bottom-0.5 w-full h-[1px] bg-sundarban-green origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                             </span>
                           </Link>
                         </li>

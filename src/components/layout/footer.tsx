@@ -21,20 +21,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="relative h-10 w-10">
-                <svg viewBox="0 0 40 40" className="h-full w-full">
-                  <circle cx="20" cy="20" r="18" fill="white" />
-                  <path
-                    d="M12 28 L20 12 L28 28 L20 22 Z"
-                    fill="#f5c842"
-                    stroke="#1a7a4a"
-                    strokeWidth="1"
-                  />
-                  <circle cx="20" cy="18" r="3" fill="white" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold font-display">
+            <Link href="/" className="flex items-center gap-2.5">
+              <img 
+                src="/icon.png" 
+                alt="SourceBD Emblem" 
+                className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border border-white/10 shadow-sm"
+              />
+              <span className="text-xl md:text-2xl font-bold font-display text-white tracking-tight">
                 Source<span className="text-loom-gold">BD</span>
               </span>
             </Link>

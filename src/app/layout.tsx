@@ -4,7 +4,6 @@ import "./globals.css";
 import { AppProviders } from "@/providers/app-providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { DemoBanner } from "@/components/layout/demo-banner";
 import { PLATFORM_NAME, PLATFORM_TAGLINE } from "@/lib/tokens";
 
 const dmSans = DM_Sans({
@@ -62,7 +61,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <AppProviders>
-          <DemoBanner />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

@@ -55,18 +55,28 @@ export function CategoriesGrid() {
                     <img
                       src={category.image}
                       alt={categoryName}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:via-black/40 transition-colors duration-500" />
+                    
+                    <div className="absolute bottom-0 left-0 right-0 p-5 transform transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
                       <h3 className={`font-display font-semibold text-white ${
                         isLarge ? 'text-2xl md:text-3xl' : 'text-base md:text-lg'
                       } tracking-tight`}>
                         {categoryName}
                       </h3>
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-white/50 mt-1 block">
-                        {category.count} suppliers
-                      </span>
+                      
+                      <div className="flex items-center gap-3 mt-1.5 overflow-hidden">
+                        <span className="font-mono text-[11px] uppercase tracking-widest text-white/60">
+                          {category.count} suppliers
+                        </span>
+                        
+                        <span className="text-padma-green opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 </Link>
