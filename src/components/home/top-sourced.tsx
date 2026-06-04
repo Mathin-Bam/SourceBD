@@ -57,7 +57,7 @@ export function TopSourced() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="font-mono text-[11px] uppercase tracking-widest text-padma-green mb-4 block">
+          <span className="text-sm font-semibold text-padma-green mb-4 block">
             Trending Categories
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-bengal-forest mb-4">
@@ -71,7 +71,11 @@ export function TopSourced() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {TOP_SOURCED.map((category) => (
             <StaggerItem key={category.id}>
-              <div className="group bg-white rounded-sm p-6 h-full flex flex-col shadow-[0_4px_20px_rgba(10,54,34,0.04)] hover:shadow-[0_32px_64px_-16px_rgba(10,54,34,0.12)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <motion.div 
+                whileHover={{ y: -8, scale: 1.015 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="group bg-white rounded-sm p-6 h-full flex flex-col shadow-[0_4px_20px_rgba(10,54,34,0.06)] hover:shadow-[0_32px_64px_-16px_rgba(10,54,34,0.15)]"
+              >
                 <Link href={`/products?category=${category.id}`}>
                   <h3 className="text-xl font-bold text-bengal-forest group-hover:text-sundarban-green transition-colors duration-500 mb-6">
                     {category.title}
@@ -110,7 +114,7 @@ export function TopSourced() {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </StaggerItem>
           ))}
         </StaggerContainer>

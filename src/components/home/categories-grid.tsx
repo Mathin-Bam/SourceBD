@@ -23,7 +23,7 @@ export function CategoriesGrid() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="font-mono text-[11px] uppercase tracking-widest text-padma-green mb-4 block">
+          <span className="text-sm font-semibold text-padma-green mb-4 block">
             Industries
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-bengal-forest mb-4">
@@ -49,8 +49,10 @@ export function CategoriesGrid() {
               >
                 <Link href={`/products?category=${category.id}`} className="block h-full">
                   <motion.div
+                    whileHover={{ y: -8, scale: 1.015 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group relative rounded-sm overflow-hidden h-full cursor-pointer"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="group relative rounded-sm overflow-hidden h-full cursor-pointer shadow-[0_4px_20px_rgba(10,54,34,0.06)] hover:shadow-[0_32px_64px_-16px_rgba(10,54,34,0.15)]"
                   >
                     <img
                       src={category.image}
@@ -67,7 +69,7 @@ export function CategoriesGrid() {
                       </h3>
                       
                       <div className="flex items-center gap-3 mt-1.5 overflow-hidden">
-                        <span className="font-mono text-[11px] uppercase tracking-widest text-white/60">
+                        <span className="text-sm font-medium text-white/80">
                           {category.count} suppliers
                         </span>
                         
@@ -94,7 +96,7 @@ export function CategoriesGrid() {
           <Link href="/categories">
             <motion.span
               whileHover={{ scale: 1.02 }}
-              className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-padma-green hover:text-sundarban-green transition-colors duration-500"
+              className="inline-flex items-center gap-3 text-sm font-semibold text-padma-green hover:text-sundarban-green transition-colors duration-500"
             >
               View all {CATEGORIES.length} categories
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

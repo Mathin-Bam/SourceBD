@@ -1,20 +1,26 @@
 import React from "react";
 import { MapPin, Users, Star, Award, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 import type { Supplier } from '@/lib/types';
 
 interface SupplierGridCardProps {
   supplier: Supplier;
+  className?: string;
 }
 
-export function SupplierGridCard({ supplier }: SupplierGridCardProps) {
+export function SupplierGridCard({ supplier, className = "" }: SupplierGridCardProps) {
   // Fallback to a sleek placeholder image if missing
   const bannerUrl =
     (supplier as any).banner ||
     "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80";
 
   return (
-    <div className="group relative w-full h-[480px] overflow-hidden rounded-sm cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] -translate-y-0 hover:-translate-y-1 shadow-[0_1px_3px_rgba(10,54,34,0.04)] hover:shadow-[0_32px_64px_-16px_rgba(10,54,34,0.08)] bg-[#FDFDFB]">
+    <motion.div 
+      whileHover={{ y: -8, scale: 1.015 }}
+      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+      className={`group relative w-full h-[480px] overflow-hidden rounded-sm cursor-pointer shadow-[0_4px_20px_rgba(10,54,34,0.06)] hover:shadow-[0_32px_64px_-16px_rgba(10,54,34,0.15)] bg-[#FDFDFB] ${className}`}
+    >
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
@@ -74,6 +80,6 @@ export function SupplierGridCard({ supplier }: SupplierGridCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

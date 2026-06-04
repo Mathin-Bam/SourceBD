@@ -15,6 +15,7 @@ import {
   Building2,
   ArrowRight,
 } from 'lucide-react';
+import { SupplierGridCard } from '@/components/suppliers/supplier-grid-card';
 
 export function FeaturedSuppliers() {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ export function FeaturedSuppliers() {
           className="flex flex-col md:flex-row md:items-end md:justify-between mb-16"
         >
           <div>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-padma-green mb-4 block">
+            <span className="text-sm font-semibold text-padma-green mb-4 block">
               Verified Partners
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-bengal-forest mb-2">
@@ -42,9 +43,9 @@ export function FeaturedSuppliers() {
             </p>
           </div>
           <Link href="/suppliers" className="mt-4 md:mt-0">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-padma-green hover:text-sundarban-green transition-colors duration-500">
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-padma-green hover:text-sundarban-green transition-colors duration-500">
               {t('common.viewAll')}
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         </motion.div>
@@ -53,55 +54,7 @@ export function FeaturedSuppliers() {
           {FEATURED_SUPPLIERS.slice(0, 4).map((supplier, index) => (
             <StaggerItem key={supplier.id} index={index}>
               <Link href={`/suppliers/${supplier.id}`}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="group bg-white rounded-sm p-8 h-full flex flex-col shadow-[0_1px_3px_rgba(10,54,34,0.04)] hover:shadow-[0_32px_64px_-16px_rgba(10,54,34,0.08)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                >
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-12 h-12 rounded-sm bg-[#F8F9FA] flex items-center justify-center overflow-hidden border border-gray-100">
-                      <img src={supplier.logo || `https://ui-avatars.com/api/?name=${encodeURIComponent(supplier.name)}&background=0A3622&color=fff&size=128&font-size=0.4`} alt={supplier.name} className="w-full h-full object-cover" />
-                    </div>
-                    <BadgeTier tier={supplier.tier} size="sm" animated />
-                  </div>
-
-                  {/* Name */}
-                  <h3 className="text-xl font-bold text-bengal-forest group-hover:text-sundarban-green transition-colors duration-500 mb-1">
-                    {language === 'bn' && supplier.nameBn ? supplier.nameBn : supplier.name}
-                  </h3>
-
-                  {/* Location */}
-                  <div className="flex items-center gap-1.5 mb-4">
-                    <MapPin className="h-3 w-3 text-gray-400" />
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-gray-400">
-                      {supplier.location.city}, {supplier.location.division}
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6 line-clamp-2 flex-1">
-                    {language === 'en' ? supplier.description.en.slice(0, 100) : supplier.description.bn.slice(0, 80)}...
-                  </p>
-
-                  {/* Stats */}
-                  <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                    <div className="flex items-center gap-1.5">
-                      <Users className="h-3.5 w-3.5 text-gray-300" />
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-gray-500">
-                        {supplier.employees.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Star className="h-3.5 w-3.5 text-jute-gold fill-jute-gold" />
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-gray-500">
-                        {supplier.rating}
-                      </span>
-                    </div>
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-padma-green">
-                      {supplier.certifications.slice(0, 2).join(' · ')}
-                    </span>
-                  </div>
-                </motion.div>
+                <SupplierGridCard supplier={supplier as any} />
               </Link>
             </StaggerItem>
           ))}

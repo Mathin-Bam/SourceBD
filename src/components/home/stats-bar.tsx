@@ -32,7 +32,7 @@ export function StatsBar() {
               }}
               className="text-center"
             >
-              <div className="text-3xl md:text-4xl font-bold font-mono text-sundarban-green mb-1">
+              <div className="text-3xl md:text-4xl font-bold text-sundarban-green mb-1">
                 {isInView && (
                   <AnimatedCounter
                     value={stat.value}
@@ -41,7 +41,7 @@ export function StatsBar() {
                   />
                 )}
               </div>
-              <p className="font-mono text-[11px] uppercase tracking-widest text-gray-500">{t(`home.stats.${stat.key}`)}</p>
+              <p className="text-sm font-semibold text-gray-500">{t(`home.stats.${stat.key}`)}</p>
             </motion.div>
           ))}
         </div>
